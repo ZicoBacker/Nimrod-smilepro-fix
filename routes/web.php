@@ -22,7 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('messages', MessageController::class);
-Route::put('messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('messages', MessageController::class);
+    Route::put('messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+});
 
 require __DIR__ . '/auth.php';
