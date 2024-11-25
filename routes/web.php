@@ -5,7 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/Appointment', function () {
+    return view('Appointment');
 });
 
 Route::get('/banner', function () {
