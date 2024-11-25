@@ -61,6 +61,17 @@
                         </a>
                     </main>
 
+                    <!-- CREATE TABLE `schedules` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT UNSIGNED NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `start_time` DATETIME(6) NOT NULL,
+    `end_time` DATETIME(6) NOT NULL,
+    `description` VARCHAR(255) NULL,
+    `created_at` DATETIME(6) NULL,
+    `updated_at` DATETIME(6) NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; -->
 
 
                     <footer class="py-16 text-center text-sm text-black dark:text-white/70">

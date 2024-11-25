@@ -26,7 +26,9 @@ class ScheduleController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'date' => 'required|date',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date',
+            'user_id' => 'required|exists:users,id',
         ]);
 
         Schedule::create($request->all());
