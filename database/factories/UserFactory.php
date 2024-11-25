@@ -14,7 +14,7 @@ class UserFactory extends Factory
     /**
      * The current password being used by the factory.
      */
-    protected static ?string $password;
+    protected static ?string $password = null;
 
     /**
      * Define the model's default state.
@@ -37,8 +37,20 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the model should have specific test user data.
+     */
+    public function testUser(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'TestUser',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('Test1234'),
         ]);
     }
 }

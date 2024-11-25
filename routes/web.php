@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 
 Route::get('/', function () {
     return view('index');
@@ -9,6 +10,10 @@ Route::get('/', function () {
 
 Route::get('/Appointment', function () {
     return view('Appointment');
+});
+
+Route::get('/banner', function () {
+    return view('banner');
 });
 
 Route::get('/dashboard', function () {
@@ -21,4 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::resource('messages', MessageController::class);
+    Route::put('messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+});
+
+require __DIR__ . '/auth.php';
