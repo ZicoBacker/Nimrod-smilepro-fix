@@ -17,7 +17,11 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'start_time' => $this->faker->dateTimeBetween('now', '+1 week'),
+            'end_time' => $this->faker->dateTimeBetween('+1 week', '+2 weeks'),
+            'location' => $this->faker->address,
         ];
     }
 }
