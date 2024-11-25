@@ -7,30 +7,29 @@
         @else
             <ul class="space-y-4">
                 @foreach ($messages as $message)
-                    <li class="p-4 bg-white shadow rounded-lg flex justify-between items-center mb-4">
-                        <span>{{ $message->content }}</span>
+                    <li class="p-4 bg-gray-800 shadow rounded-lg flex justify-between items-center mb-4">
+                        <span class="text-gray-300">{{ $message->content }}</span>
                         @if (!$message->is_read)
                             <form action="{{ route('messages.read', $message) }}" method="POST" class="inline">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit"
-                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Markeer als
+                                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Markeer als
                                     gelezen</button>
                             </form>
                         @endif
                     </li>
                 @endforeach
+                <div class="bg-green-500 text-white p-4">
+                    Dit is een test om te zien of Tailwind CSS werkt voor groen.
+                </div>
+                <div class="bg-yellow-500 text-white p-4">
+                    Dit is een test om te zien of Tailwind CSS werkt voor geel.
+                </div>
+                <div class="bg-red-500 text-white p-4">
+                    Dit is een test om te zien of Tailwind CSS werkt voor rood.
+                </div>
             </ul>
         @endif
-
-        <form action="{{ route('messages.store') }}" method="POST" class="mt-6">
-            @csrf
-            <div class="flex items-center space-x-4">
-                <input type="text" name="content" placeholder="Nieuw bericht" required
-                    class="flex-1 p-2 border border-gray-300 rounded">
-                <button type="submit"
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Toevoegen</button>
-            </div>
-        </form>
     </div>
 </x-app-layout>

@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->text('content');
             $table->boolean('is_read')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
