@@ -8,6 +8,8 @@
         @foreach($schedules as $schedule)
             <li>
                 <a href="{{ route('schedules.show', $schedule->id) }}">{{ $schedule->title }}</a>
+                <p><strong>Start Time:</strong> {{ $schedule->start_time }}</p>
+                <p><strong>End Time:</strong> {{ $schedule->end_time }}</p>
             </li>
         @endforeach
     </ul>
