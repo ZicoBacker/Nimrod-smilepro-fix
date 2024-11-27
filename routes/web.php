@@ -10,7 +10,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Controllers\AppointmentController;
+
 
 Route::get('/', function () {
     return view('index');
