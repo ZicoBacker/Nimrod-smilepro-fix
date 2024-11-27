@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->text('description')->nullable();
+            $table->bit('is_active');
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employee')->onDelete('cascade');

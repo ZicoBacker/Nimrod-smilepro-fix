@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('employee_type');
             $table->string('specialization')->nullable();
             $table->text('availability')->nullable();
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('time_from');
             $table->time('time_to');
             $table->string('status');
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 

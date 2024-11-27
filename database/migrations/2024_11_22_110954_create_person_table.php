@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('infix')->nullable();
             $table->string('last_name');
             $table->date('date_of_birth');
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
         });

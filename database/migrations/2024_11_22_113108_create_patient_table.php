@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('person_id');
             $table->string('number');
             $table->text('medical_file')->nullable();
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->decimal('amount', 8, 2);
             $table->string('status');
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 

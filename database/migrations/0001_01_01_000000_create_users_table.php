@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('vat')->nullable();
             $table->string('kvk')->nullable();
             $table->string('iban')->nullable();
+            $table->bit('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

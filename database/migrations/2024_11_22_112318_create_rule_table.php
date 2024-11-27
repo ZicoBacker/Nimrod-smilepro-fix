@@ -16,7 +16,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->string('name')->nullable();
-            $table->boolean('is_active');
+            $table->bit('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 
