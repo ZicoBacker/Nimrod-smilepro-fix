@@ -2,7 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+
 
 return new class extends Migration
 {
@@ -18,10 +20,11 @@ return new class extends Migration
             $table->string('infix')->nullable();
             $table->string('last_name');
             $table->date('date_of_birth');
-            $table->bit('is_active');
+            $table->boolean('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE person MODIFY is_active BIT(1)default 1');
     }
 
     /**
