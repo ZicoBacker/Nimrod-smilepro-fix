@@ -38,4 +38,37 @@ class RuleFactory extends Factory
             'comment' => 'Dentist rule',
         ]);
     }
+
+    /**
+     * Indicate that the model's state should be "employee".
+     */
+    public function employee(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'employee',
+            'comment' => 'Employee rule',
+        ]);
+    }
+
+    /**
+     * Indicate that the model's state should be "patient".
+     */
+    public function patient(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'patient',
+            'comment' => 'Patient rule',
+        ]);
+    }
+
+    /**
+     * Indicate that the model's state should be "user".
+     */
+    public function user(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'user',
+            'comment' => 'User rule',
+        ]);
+    }
 }

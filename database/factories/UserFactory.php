@@ -88,6 +88,9 @@ class UserFactory extends Factory
         ]);
     }
 
+    /**
+     * Indicate that the model should have specific employee user data.
+     */
     public function employeeUser(): static
     {
         return $this->state(fn(array $attributes) => [
@@ -95,6 +98,20 @@ class UserFactory extends Factory
             'email' => 'employee@gmail.com',
             'password' => Hash::make('Employee1234'),
             'rule' => 'employee',
+            'email_verified_at' => now(),
+        ]);
+    }
+
+    /**
+     * Indicate that the model should have specific patient user data.
+     */
+    public function patientUser(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'PatientUser',
+            'email' => 'patient@gmail.com',
+            'password' => Hash::make('Patient1234'),
+            'rule' => 'patient',
             'email_verified_at' => now(),
         ]);
     }
