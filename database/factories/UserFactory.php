@@ -55,7 +55,7 @@ class UserFactory extends Factory
             'name' => 'TestUser',
             'email' => 'test@gmail.com',
             'password' => Hash::make('Test1234'),
-            'rule' => 'employee',
+            'rule' => 'user',
             'email_verified_at' => now(),
         ]);
     }
@@ -70,6 +70,31 @@ class UserFactory extends Factory
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Admin1234'),
             'rule' => 'admin',
+            'email_verified_at' => now(),
+        ]);
+    }
+
+    /**
+     * Indicate that the model should have specific dentist user data.
+     */
+    public function dentistUser(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'DentistUser',
+            'email' => 'dentist@gmail.com',
+            'password' => Hash::make('Dentist1234'),
+            'rule' => 'dentist',
+            'email_verified_at' => now(),
+        ]);
+    }
+
+    public function employeeUser(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'EmployeeUser',
+            'email' => 'employee@gmail.com',
+            'password' => Hash::make('Employee1234'),
+            'rule' => 'employee',
             'email_verified_at' => now(),
         ]);
     }
