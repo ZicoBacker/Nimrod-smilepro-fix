@@ -6,6 +6,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\AppointmentController;
 
 Route::get('/', function () {
     return view('index');
@@ -15,15 +16,12 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/Appointment', function () {
-    return view('Appointment');
-});
-
 Route::get('/banner', function () {
     return view('banner');
 });
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/Appointment', [AppointmentController::class, 'index'])->name('Appointment');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
