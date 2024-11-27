@@ -34,6 +34,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+    Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+});
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/admin/messages', [MessageController::class, 'adminIndex'])->name('messages.admin.index');
+    Route::put('/admin/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.admin.read');
 });
 
 // Beschikbaarheid index
@@ -50,10 +58,5 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
-
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-    Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
-});
 
 require __DIR__ . '/auth.php';

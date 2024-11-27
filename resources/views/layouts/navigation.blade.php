@@ -12,6 +12,10 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @if (Auth::check() && Auth::user()->rule === 'admin')
+                        <x-nav-link :href="route('messages.admin.index')" :active="request()->routeIs('messages.admin.index')">
+                            {{ __('Messages') }}
+                        </x-nav-link>
+                    @elseif (Auth::check() && Auth::user()->rule === 'dentist')
                         <x-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.index')">
                             {{ __('Messages') }}
                         </x-nav-link>
@@ -82,6 +86,10 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             @if (Auth::check() && Auth::user()->rule === 'admin')
+                <x-responsive-nav-link :href="route('messages.admin.index')" :active="request()->routeIs('messages.admin.index')">
+                    {{ __('Messages') }}
+                </x-responsive-nav-link>
+            @elseif (Auth::check() && Auth::user()->rule === 'dentist')
                 <x-responsive-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.index')">
                     {{ __('Messages') }}
                 </x-responsive-nav-link>

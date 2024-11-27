@@ -8,11 +8,13 @@ use App\Models\Conversation;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-        $conversations = Conversation::where('user_id', $user->id)->with('messages')->get();
+        $allConversations = Conversation::where('user_id', $user->id)->get();
+        $conversationId = $request->get('conversation_id', $allConversations->first()->id ?? null);
+        $conversations = Conversation::where('id', $conversationId)->with('messages')->get();
 
-        return view('dashboard', compact('user', 'conversations'));
+        return view('dashboard', compact('user', 'conversations', 'allConversations'));
     }
 }

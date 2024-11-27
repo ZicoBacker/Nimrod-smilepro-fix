@@ -10,6 +10,10 @@ class AdminMiddleware
 {
     /**
      * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
     public function handle(Request $request, Closure $next)
     {
@@ -17,6 +21,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/'); // Redirect to home if not admin
+        return redirect()->route('home')->with('error', 'You do not have admin access.');
     }
 }
