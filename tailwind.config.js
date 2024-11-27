@@ -8,14 +8,32 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
     theme: {
         extend: {
+            colors: {
+                darkBackground: '#1a202c', // Custom dark background color
+                darkText: '#a0aec0', // Custom dark text color
+                darkCard: '#2d3748', // Custom dark card color
+                customGreen: {
+                    light: '#6ee7b7',
+                    DEFAULT: '#10b981',
+                    dark: '#047857',
+                },
+                customYellow: {
+                    light: '#fde68a',
+                    DEFAULT: '#f59e0b',
+                    dark: '#b45309',
+                },
+                customRed: {
+                    light: '#fca5a5',
+                    DEFAULT: '#ef4444',
+                    dark: '#991b1b',
+                },
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
-
     plugins: [forms],
 };
