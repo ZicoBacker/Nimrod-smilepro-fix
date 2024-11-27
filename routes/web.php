@@ -27,7 +27,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
 });
 
+// Beschikbaarheid index
 Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
+
+// Beschikbaarheid show
+Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
+
+// Beschikbaarheid create
+Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

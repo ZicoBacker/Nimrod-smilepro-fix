@@ -5,6 +5,33 @@
             gezin. Uw glimlach is onze prioriteit!</p>
     </div>
 
+    <br>
+    <a href="{{ route('schedules.index') }}">View Schedules</a>
+                            
+    <div class="text-center">
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Onze diensten</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Tandheelkundige controles</h3>
+                <p>Wij bieden regelmatige tandheelkundige controles om uw mondgezondheid te controleren en problemen te
+                    voorkomen.</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Tandheelkundige reiniging</h3>
+                <p>Professionele tandheelkundige reiniging om tandplak en tandsteen te verwijderen en uw tanden te
+                    beschermen tegen tandbederf.</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Tandheelkundige behandelingen</h3>
+                <p>Wij bieden een breed scala aan tandheelkundige behandelingen, waaronder vullingen, wortelkanalen en
+                    tandextracties.</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="text-xl font-semibold mb-2">Cosmetische tandheelkunde</h3>
+                <p>Verbeter uw glimlach met cosmetische tandheelkundige behandelingen, waaronder tanden bleken en
+                    facings.</p>
+        </div>
+
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-4">Stuur een bericht</h1>
 
