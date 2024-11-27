@@ -24,7 +24,7 @@
                                     <label for="email">E-mailadres</label>
                                     <input type="email" name="email" id="email" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="email@voorbeeld.com" />
                                 </div>
--
+
                                 <div class="md:col-span-5">
                                     <label for="phone">Telefoonnummer</label>
                                     <input type="tel" name="phone" id="phone" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="+31 6 12345678" />

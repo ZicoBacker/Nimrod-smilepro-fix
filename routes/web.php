@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PersonController;
 
 Route::get('/', function () {
     return view('index');
@@ -11,6 +15,11 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::resource('appointments', AppointmentController::class);
+Route::resource('employees', EmployeeController::class);
+Route::resource('patient', PatientController::class);
+Route::resource('persons', PersonController::class);
 
 Route::get('/Appointment', function () {
     return view('Appointment');
