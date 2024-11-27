@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{ __('Schedules') }}
+            {{ __('Beschikbaarheid') }}
         </h2>
+        
     </x-slot>
+    
     <div class="container">
-        <h1>Schedules</h1>
-        <a href="{{ route('schedules.create') }}" class="btn btn-primary">Create New Schedule</a>
+    <a href="{{ route('schedules.show') }}" class="btn btn-primary">Beschikbaarheid Overzicht</a>
+    <a href="{{ route('schedules.create') }}" class="btn btn-primary">Beschikbaarheid Toevoegen</a>
         <ul>
             @foreach ($schedules as $schedule)
                 <li>
