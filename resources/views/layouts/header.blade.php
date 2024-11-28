@@ -24,9 +24,6 @@
                          </a>
                      @endif
                  @endauth
-                 <li>
-                    <a href="{{ route('appointments.index') }}">Appointments</a>
-                </li>
              </nav>
          @endif
 
