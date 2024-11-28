@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
 
 Route::resource('appointments', AppointmentController::class);
 Route::resource('employees', EmployeeController::class);
-Route::resource('patient', PatientController::class);
+Route::resource('patients', PatientController::class);
 Route::resource('persons', PersonController::class);
 
 Route::get('/Appointment', function () {
