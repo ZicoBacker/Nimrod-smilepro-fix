@@ -7,7 +7,6 @@
     </x-slot>
     
     <div class="container">
-    <!-- Remove the incorrect link -->
     <a href="{{ route('schedules.show') }}" class="btn btn-primary">Beschikbaarheid Overzicht</a>
     <a href="{{ route('schedules.create') }}" class="btn btn-primary">Beschikbaarheid Toevoegen</a>
         <ul>

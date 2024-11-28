@@ -6,7 +6,7 @@
     </div>
 
     <br>
-    <a href="{{ route('schedules.index') }}">View Schedules</a>
+    <a href="{{ route('schedules.index') }}" class="btn btn-primary">Beschikbaarheid Overzicht</a>
                             
     <div class="text-center">
         <h2 class="text-2xl font-semibold mt-8 mb-4">Onze diensten</h2>

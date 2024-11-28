@@ -27,16 +27,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+    // Beschikbaarheid index
+    Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
+    
+    // Beschikbaarheid create
+    Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
+    
+    // Show specific schedule
+    Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
 });
 
-// Beschikbaarheid index
-Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
-
-// Beschikbaarheid create
-Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
-
-// Show specific schedule
-Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
