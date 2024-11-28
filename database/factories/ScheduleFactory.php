@@ -3,12 +3,17 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Schedule;
+use Carbon\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Schedule>
  */
 class ScheduleFactory extends Factory
 {
+    protected $model = Schedule::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,11 +22,11 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
+            'user_id' => User::factory(),
+            'name' => $this->faker->sentence,
+            'start_time' => Carbon::now()->addDays(rand(1, 30)),
+            'end_time' => Carbon::now()->addDays(rand(31, 60)),
             'description' => $this->faker->paragraph,
-            'start_time' => $this->faker->dateTimeBetween('now', '+1 week'),
-            'end_time' => $this->faker->dateTimeBetween('+1 week', '+2 weeks'),
-            'location' => $this->faker->address,
         ];
     }
 }
