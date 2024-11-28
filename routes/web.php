@@ -41,21 +41,35 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/admin/messages', [MessageController::class, 'adminIndex'])->name('messages.admin.index');
     Route::put('/admin/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.admin.read');
+    // Beschikbaarheid index
+    Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
+
+    // Beschikbaarheid create
+    Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
+
+    // Show specific schedule
+    Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
+
+    // store schedule
+    Route::post('/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
+
+    // edit schedule
+    Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('schedules.edit');
+
+    // update schedule
+    Route::patch('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
 });
 
-// Beschikbaarheid index
-Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
-
-// Beschikbaarheid show
-Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
-
-// Beschikbaarheid create
-Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 Route::resource('schedules', ScheduleController::class)->middleware('auth');
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+});
 
 require __DIR__ . '/auth.php';
