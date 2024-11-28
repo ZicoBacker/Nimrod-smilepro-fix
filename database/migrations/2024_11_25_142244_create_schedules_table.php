@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->date('start_time');
+            $table->date('end_time');
             $table->text('description')->nullable();
             $table->timestamps();
 

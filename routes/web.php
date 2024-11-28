@@ -35,6 +35,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Show specific schedule
     Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
+
+    // store schedule
+    Route::post('/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
+
+    // edit schedule
+    Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('schedules.edit');
+
+    // update schedule
+    Route::patch('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
 });
 
 
