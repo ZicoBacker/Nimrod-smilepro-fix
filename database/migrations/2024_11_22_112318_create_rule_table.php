@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -22,6 +23,7 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
         });
+        DB::statement('ALTER TABLE rules MODIFY is_active BIT(1)default 1');
     }
 
     /**
