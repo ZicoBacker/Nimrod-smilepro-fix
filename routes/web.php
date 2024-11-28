@@ -32,9 +32,6 @@ Route::middleware(['auth'])->group(function () {
 // Beschikbaarheid index
 Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
 
-// Beschikbaarheid show
-Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');
-
 // Beschikbaarheid create
 Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
 
