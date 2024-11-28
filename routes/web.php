@@ -32,11 +32,19 @@ Route::get('/banner', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/Appointment', [AppointmentController::class, 'index'])->name('Appointment');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
     Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    // Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
     Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+});
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show');
+    Route::get('/messages/{conversation}/edit', [MessageController::class, 'edit'])->name('messages.edit');
+    Route::put('/messages/{conversation}', [MessageController::class, 'update'])->name('messages.update');
+    Route::delete('/messages/{conversation}', [MessageController::class, 'destroy'])->name('messages.destroy');
 });
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
