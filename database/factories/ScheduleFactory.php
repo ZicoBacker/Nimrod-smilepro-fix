@@ -26,7 +26,8 @@ class ScheduleFactory extends Factory
 
         return [
             'user_id' => User::factory(),
-            'name' => $this->faker->sentence,
+            'name' => 
+            $this->faker->randomElement(['Tandarts: Dr. Beren', 'Mondhygiënist: Dr. Astra', 'Assistent: Dr. Jansen', 'Tandarts: Dr. Jansen']),
             'start_time' => $startTime,
             'end_time' => $endTime,
             'description' => $this->faker->paragraph,
