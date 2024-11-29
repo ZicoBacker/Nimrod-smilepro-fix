@@ -14,7 +14,7 @@ class MessageController extends Controller
         $user = Auth::user();
         if ($user->role === 'dentist') {
             $conversations = Conversation::where('recipient', 'dentist')->with('user', 'messages.user')->get();
-        } elseif ($user->rule === 'admin') {
+        } elseif ($user->role === 'admin') {
             $conversations = Conversation::where('recipient', 'Hulpdesk')->with('user', 'messages.user')->get();
         } else {
             $conversations = collect();
@@ -46,7 +46,8 @@ class MessageController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->back()->with('success', 'Bericht succesvol verzonden!');
+        // return redirect()->back()->with('success', 'Bericht succesvol verzonden!');
+        return redirect()->route('messages.index')->with('success', 'Bericht succesvol verzonden!');
     }
 
     public function reply(Request $request, Conversation $conversation)

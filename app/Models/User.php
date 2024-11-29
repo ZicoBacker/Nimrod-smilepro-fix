@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'rule',
+        'role',
     ];
 
     /**
@@ -47,15 +47,9 @@ class User extends Authenticatable
         ];
     }
 
-    // Add the roles relationship
+    // Zorg ervoor dat de roles relatie correct is
     public function roles()
     {
         return $this->belongsToMany(Role::class);
-    }
-
-    // Add the rules relationship
-    public function rules()
-    {
-        return $this->hasMany(Rule::class);
     }
 }

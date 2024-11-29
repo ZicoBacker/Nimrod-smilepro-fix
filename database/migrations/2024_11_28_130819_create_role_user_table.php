@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedInteger('role_id'); // Changed to unsignedInteger
+            $table->unsignedInteger('role_id');
             $table->timestamps();
 
             $table->primary(['id']);

@@ -55,6 +55,7 @@ class UserFactory extends Factory
             'name' => 'TestUser',
             'email' => 'test@gmail.com',
             'password' => Hash::make('Test1234'),
+            'role' => 'user',
         ]);
     }
 
@@ -67,6 +68,7 @@ class UserFactory extends Factory
             'name' => 'AdminUser',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Admin1234'),
+            'role' => 'admin',
         ]);
     }
 
@@ -79,6 +81,7 @@ class UserFactory extends Factory
             'name' => 'PatientUser',
             'email' => 'patient@gmail.com',
             'password' => Hash::make('Patient1234'),
+            'role' => 'patient',
         ]);
     }
 
@@ -91,6 +94,7 @@ class UserFactory extends Factory
             'name' => 'DentistUser',
             'email' => 'dentist@gmail.com',
             'password' => Hash::make('Dentist1234'),
+            'role' => 'dentist',
         ]);
     }
 
@@ -103,6 +107,7 @@ class UserFactory extends Factory
             'name' => 'EmployeeUser',
             'email' => 'employee@gmail.com',
             'password' => Hash::make('Employee1234'),
+            'role' => 'employee',
         ]);
     }
 
@@ -112,8 +117,9 @@ class UserFactory extends Factory
     public function configure(): static
     {
         return $this->afterCreating(function (User $user) {
-            $role = Role::factory()->create();
-            $user->roles()->attach($role);
+            // Verwijder de aanmaak van een nieuwe rol hier
+            // $role = Role::factory()->create();
+            // $user->roles()->attach($role);
         });
     }
 }
