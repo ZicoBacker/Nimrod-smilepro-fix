@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
