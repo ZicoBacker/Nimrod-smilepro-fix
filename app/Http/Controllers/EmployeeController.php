@@ -18,7 +18,8 @@ class EmployeeController extends Controller
         if (Auth::user()->role !== 'admin') {
             return redirect()->route('home')->with('error', 'You do not have access.');
         }
-        return view('Employee.index');
+        $employees = Employee::all();
+        return view('Employee.index', compact('employees'));
     }
 
     /**
