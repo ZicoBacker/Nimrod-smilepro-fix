@@ -29,10 +29,7 @@ class User extends Authenticatable
         'city',
         'postcode',
         'country',
-        'company',
-        'vat',
-        'kvk',
-        'iban',
+        'date_of_birth',
         'employee',
         'is_active',
     ];

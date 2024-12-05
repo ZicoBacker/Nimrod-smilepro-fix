@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('specialization')->nullable();
             $table->text('availability')->nullable();
             $table->boolean('employee')->default(0);
+            $table->date('date_of_birth')->nullable();
             $table->boolean('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();

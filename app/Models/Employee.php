@@ -22,6 +22,7 @@ class Employee extends Model
         'employee_type',
         'specialization',
         'availability',
+        'date_of_birth',
         'employee',
         'is_active',
         'comment'

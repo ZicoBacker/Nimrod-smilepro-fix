@@ -16,6 +16,7 @@ class UserObserver
             'user_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'date_of_birth' => $user->date_of_birth,
             'employee' => $user->employee,
             'is_active' => $user->is_active,
         ]);
@@ -30,6 +31,7 @@ class UserObserver
             'user_id' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
+            'date_of_birth' => $user->date_of_birth,
             'employee' => $user->employee,
             'is_active' => $user->is_active,
         ]);
