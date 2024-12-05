@@ -25,33 +25,34 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $patients = Patient::pluck('name', 'id');
-        $employees = Employee::pluck('name', 'id');
+        $patients = Patient::with('person')->get()->pluck('full_name', 'id');
+        $employees = Employee::with('person')->get()->pluck('full_name', 'id');
         return view('appointments.create', compact('patients', 'employees'));
     }
+    
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'patient_id' => 'required|exists:patients,id',
             'employee_id' => 'required|exists:employees,id',
             'date' => 'required|date',
-            'time' => 'required|date_format:H:i',
-            'status' => 'required|string|max:255',
-            'is_active' => 'required|boolean',
-            'comment' => 'nullable|string',
+            'time' => 'required',
+            'comment' => 'nullable|string|max:255',
         ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
+        Appointment::create([
+            'patient_id' => $validated['patient_id'],
+            'employee_id' => $validated['employee_id'],
+            'date' => $validated['date'],
+            'time' => $validated['time'],
+            'status' => 'Pending', // default waarde
+            'is_active' => true,
+            'comment' => $validated['comment'] ?? null,
+        ]);
 
-        Appointment::create($request->all());
-        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully.');
-    }
+      return redirect()->route('appointments.index')->with('success', 'Appointment created successfully');
+      }
 
     /**
      * Display the specified resource.
@@ -66,8 +67,9 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        $patients = Patient::pluck('name', 'id');
-        $employees = Employee::pluck('name', 'id');
+        $patients = Patient::with('person')->get()->pluck('full_name', 'id');
+        $employees = Employee::with('person')->get()->pluck('full_name', 'id');
+    
         return view('appointments.edit', compact('appointment', 'patients', 'employees'));
     }
 

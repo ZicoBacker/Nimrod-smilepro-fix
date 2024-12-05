@@ -1,49 +1,42 @@
 <x-layout>
-    
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="container mx-auto p-4">
+        @if(session('success'))
+            <div class="bg-green-100 border-t-4 border-green-600 rounded-b px-4 py-3 text-green-700" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <h1>Appointments</h1>
+        <h1 class="text-3xl font-bold mb-4">Afspraken</h1>
 
-    <p><a href="{{ route('appointments.create') }}" class="btn btn-primary">Create New Appointment</a></p>
+        <p class="mb-4">
+            <a href="{{ route('appointments.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Nieuwe afspraak maken</a>
+        </p>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Patient Name</th>
-                <th>Employee Name</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($appointments as $appointment)
-                <tr>
-                    <td>{{ $appointment->id }}</td>
-                    <td>{{ $appointment->patient->person->full_name }}</td>
-                    <td>{{ $appointment->employee->person->full_name }}</td>
-                    <td>{{ $appointment->date->format('Y-m-d') }}</td>
-                    <td>{{ $appointment->time }}</td>
-                    <td>{{ $appointment->status }}</td>
-                    <td>{{ $appointment->is_active ? 'Yes' : 'No' }}</td>
-                    <td>
-                        <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
-                    </td>
+        <table class="w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200 text-gray-600 font-bold">
+                    <th class="p-2">Patiënt Naam</th>
+                    <th class="p-2">Medewerker Naam</th>
+                    <th class="p-2">Datum</th>
+                    <th class="p-2">Acties</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($appointments as $appointment)
+                    <tr class="@if($loop->even) bg-gray-50 @endif">
+                        <td class="p-2">{{ $appointment->patient->person->full_name }}</td>
+                        <td class="p-2">{{ $appointment->employee->person->full_name }}</td>
+                        <td class="p-2">{{ $appointment->date }}</td>
+                        <td class="p-2">
+                            <a href="{{ route('appointments.show', $appointment->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bekijken</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-    {{ $appointments->links() }}
+        <div class="mt-4">
+            {{ $appointments->links() }}
+        </div>
+    </div>
 </x-layout>

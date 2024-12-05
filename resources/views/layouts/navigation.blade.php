@@ -11,6 +11,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('appointments.index')" :active="request()->routeIs('appointments.index')">
+                        {{ __('Appointments') }}
+                    </x-nav-link>                    
                     @if (Auth::check() && Auth::user()->rule === 'admin')
                         <x-nav-link :href="route('messages.admin.index')" :active="request()->routeIs('messages.admin.index')">
                             {{ __('Messages') }}
