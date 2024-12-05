@@ -22,7 +22,7 @@
                             {{ __('Admin Dashboard') }}
                         </x-nav-link>
                         <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
-                            {{ __('Users') }}
+                            {{ __('Accounten Overzicht') }}
                         </x-nav-link>
                     @elseif (Auth::check() && Auth::user()->role === 'dentist')
                         <x-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.index')">
