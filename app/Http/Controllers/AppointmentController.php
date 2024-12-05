@@ -25,11 +25,12 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $patients = Patient::with('person')->get()->pluck('full_name', 'id');
-        $employees = Employee::with('person')->get()->pluck('full_name', 'id');
+        $patients = Patient::with('person')->get(); // Volledige modellen doorgeven
+        $employees = Employee::with('person')->get(); // Volledige modellen doorgeven
         return view('appointments.create', compact('patients', 'employees'));
     }
-    
+
+
 
     public function store(Request $request)
     {
@@ -51,8 +52,8 @@ class AppointmentController extends Controller
             'comment' => $validated['comment'] ?? null,
         ]);
 
-      return redirect()->route('appointments.index')->with('success', 'Appointment created successfully');
-      }
+        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully');
+    }
 
     /**
      * Display the specified resource.
@@ -69,7 +70,7 @@ class AppointmentController extends Controller
     {
         $patients = Patient::with('person')->get()->pluck('full_name', 'id');
         $employees = Employee::with('person')->get()->pluck('full_name', 'id');
-    
+
         return view('appointments.edit', compact('appointment', 'patients', 'employees'));
     }
 
