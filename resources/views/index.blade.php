@@ -26,10 +26,6 @@
                 <p>Wij bieden een breed scala aan tandheelkundige behandelingen, waaronder vullingen, wortelkanalen en
                     tandextracties.</p>
             </div>
-            <div class="bg-white p-4 rounded shadow">
-                <h3 class="text-xl font-semibold mb-2">Cosmetische tandheelkunde</h3>
-                <p>Verbeter uw glimlach met cosmetische tandheelkundige behandelingen, waaronder tanden bleken en
-                    facings.</p>
         </div>
 
     <div class="container mx-auto p-4">
