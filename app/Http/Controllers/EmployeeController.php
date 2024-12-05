@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
 {
     /**
-     * Display a listing of employees.
+     * Display a listing of employees!
      */
     public function index()
     {
