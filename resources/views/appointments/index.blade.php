@@ -12,28 +12,18 @@
             <a href="{{ route('appointments.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Nieuwe afspraak maken</a>
         </p>
 
-        <table class="w-full border-collapse border border-gray-300">
-            <thead>
-                <tr class="bg-gray-200 text-gray-600 font-bold">
-                    <th class="p-2">Patiënt Naam</th>
-                    <th class="p-2">Medewerker Naam</th>
-                    <th class="p-2">Datum</th>
-                    <th class="p-2">Acties</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($appointments as $appointment)
-                    <tr class="@if($loop->even) bg-gray-50 @endif">
-                        <td class="p-2">{{ $appointment->patient->person->full_name }}</td>
-                        <td class="p-2">{{ $appointment->employee->person->full_name }}</td>
-                        <td class="p-2">{{ $appointment->date }}</td>
-                        <td class="p-2">
-                            <a href="{{ route('appointments.show', $appointment->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bekijken</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            @foreach($appointments as $appointment)
+                <div class="border border-gray-300 rounded-lg p-4 shadow-sm bg-white">
+                    <h2 class="text-xl font-semibold mb-2">{{ $appointment->patient->person->full_name }}</h2>
+                    <p class="text-gray-600"><strong>Medewerker:</strong> {{ $appointment->employee->person->full_name }}</p>
+                    <p class="text-gray-600"><strong>Datum:</strong> {{ $appointment->date }}</p>
+                    <div class="mt-4">
+                        <a href="{{ route('appointments.show', $appointment->id) }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bekijken</a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
         <div class="mt-4">
             {{ $appointments->links() }}

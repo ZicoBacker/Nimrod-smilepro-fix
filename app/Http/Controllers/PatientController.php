@@ -30,7 +30,7 @@ class PatientController extends Controller
         $patient = Patient::create($request->all());
         return response()->json($patient, 201);
     }
-
+    
     public function show(Patient $patient)
     {
         return response()->json($patient->load('person'));
