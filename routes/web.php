@@ -11,7 +11,6 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AdminMiddleware;
 
-
 Route::get('/', function () {
     return view('index');
 })->name('home');
@@ -31,20 +30,20 @@ Route::get('/banner', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::post('/conversations/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
     Route::post('/conversations', [MessageController::class, 'createConversation'])->name('conversations.create');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
     Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
+    Route::post('/messages/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
 });
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
-    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+    Route::get('/admin/messages', [MessageController::class, 'adminIndex'])->name('messages.admin.index');
+    // ...other admin routes...
     Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show');
     Route::get('/messages/{conversation}/edit', [MessageController::class, 'edit'])->name('messages.edit');
     Route::put('/messages/{conversation}', [MessageController::class, 'update'])->name('messages.update');
     Route::delete('/messages/{conversation}', [MessageController::class, 'destroy'])->name('messages.destroy');
-    Route::get('/admin/messages', [MessageController::class, 'adminIndex'])->name('messages.admin.index');
-    Route::put('/admin/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.admin.read');
     Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
     Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
     Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');

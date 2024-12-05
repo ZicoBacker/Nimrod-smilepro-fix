@@ -17,7 +17,7 @@ class MessageController extends Controller
         } elseif ($user->role === 'admin') {
             $conversations = Conversation::where('recipient', 'Hulpdesk')->with('user', 'messages.user')->get();
         } else {
-            $conversations = collect();
+            return redirect('/home');
         }
         return view('messages.index', compact('conversations'));
     }
@@ -46,8 +46,7 @@ class MessageController extends Controller
             'content' => $request->content,
         ]);
 
-        // return redirect()->back()->with('success', 'Bericht succesvol verzonden!');
-        return redirect()->route('messages.index')->with('success', 'Bericht succesvol verzonden!');
+        return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Bericht succesvol verzonden!');
     }
 
     public function reply(Request $request, Conversation $conversation)
