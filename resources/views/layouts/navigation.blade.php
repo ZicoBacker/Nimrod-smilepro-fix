@@ -18,6 +18,12 @@
                         <x-nav-link :href="route('messages.admin.index')" :active="request()->routeIs('messages.admin.index')">
                             {{ __('Messages') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Admin Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                            {{ __('Users') }}
+                        </x-nav-link>
                     @elseif (Auth::check() && Auth::user()->role === 'dentist')
                         <x-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.index')">
                             {{ __('Messages') }}
@@ -91,6 +97,12 @@
             @if (Auth::check() && Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('messages.admin.index')" :active="request()->routeIs('messages.admin.index')">
                     {{ __('Messages') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    {{ __('Admin Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
+                    {{ __('Users') }}
                 </x-responsive-nav-link>
             @elseif (Auth::check() && Auth::user()->role === 'dentist')
                 <x-responsive-nav-link :href="route('messages.index')" :active="request()->routeIs('messages.index')">

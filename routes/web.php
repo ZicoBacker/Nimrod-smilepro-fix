@@ -10,6 +10,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\AdminDashboardController;
 
 Route::get('/', function () {
     return view('index');
@@ -39,6 +40,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/admin/messages', [MessageController::class, 'adminIndex'])->name('messages.admin.index');
+    Route::get('/admindashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/users', [AdminDashboardController::class, 'showUsers'])->name('admin.users');
     // ...other admin routes...
     Route::get('/messages/{conversation}', [MessageController::class, 'show'])->name('messages.show');
     Route::get('/messages/{conversation}/edit', [MessageController::class, 'edit'])->name('messages.edit');
@@ -50,6 +53,10 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::post('/schedules', [ScheduleController::class, 'store'])->name('schedules.store');
     Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('schedules.edit');
     Route::patch('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 });
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
