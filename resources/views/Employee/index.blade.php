@@ -16,6 +16,9 @@
                                     ID</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
+                                    Name</th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                     Number</th>
                                 <th scope="col"
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
@@ -38,6 +41,7 @@
                             @foreach ($employees as $employee)
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $employee->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $employee->name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $employee->number }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $employee->employee_type }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $employee->specialization }}</td>
