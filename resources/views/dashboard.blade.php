@@ -26,7 +26,7 @@
 
                 <!-- Berichten -->
                 <div class="w-full lg:w-2/3 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100" style="max-height: 300px; overflow-y: auto;">
+                    <div class="p-6 text-gray-900 dark:text-gray-100" style="max-height: 300px;">
                         <h3 class="text-2xl font-bold mb-4 flex justify-between items-center">
                             Mijn Berichten
                             <button
@@ -71,7 +71,7 @@
                                 @if ($conversations->isEmpty())
                                     <p class="text-gray-500">Je hebt nog geen berichten verstuurd.</p>
                                 @else
-                                    <ul class="space-y-4">
+                                    <ul class="space-y-4" style="max-height: 165px; overflow-y: auto;">
                                         @foreach ($conversations as $conversation)
                                             <li class="p-4 bg-gray-800 shadow rounded-lg mb-4">
                                                 @foreach ($conversation->messages as $message)
