@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/messages/{message}/read', [MessageController::class, 'markAsRead'])->name('messages.read');
     Route::post('/messages/{conversation}/reply', [MessageController::class, 'reply'])->name('messages.reply');
     Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::delete('/conversations/{conversation}', [MessageController::class, 'destroy'])->name('conversations.destroy');
+    Route::delete('/messages/deleteSelected', [MessageController::class, 'deleteSelected'])->name('messages.deleteSelected');
 });
 
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {

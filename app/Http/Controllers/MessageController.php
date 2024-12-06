@@ -19,13 +19,15 @@ class MessageController extends Controller
         } else {
             return redirect('/home');
         }
-        return view('messages.index', compact('conversations'));
+        $conversation = $conversations->first();
+        return view('messages.index', compact('conversations', 'conversation'));
     }
 
     public function adminIndex()
     {
         $conversations = Conversation::where('recipient', 'Hulpdesk')->with('user', 'messages.user')->get();
-        return view('messages.index', compact('conversations'));
+        $conversation = $conversations->first();
+        return view('messages.index', compact('conversations', 'conversation'));
     }
 
     public function store(Request $request)
@@ -110,5 +112,24 @@ class MessageController extends Controller
         }
 
         return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Laatste bericht succesvol verwijderd!');
+    }
+
+    public function destroy(Conversation $conversation)
+    {
+        $conversation->delete();
+
+        return redirect()->route('messages.index')->with('success', 'Gesprek succesvol verwijderd!');
+    }
+
+    public function deleteSelected(Request $request)
+    {
+        $request->validate([
+            'message_ids' => 'required|array',
+            'message_ids.*' => 'exists:messages,id',
+        ]);
+
+        Message::whereIn('id', $request->message_ids)->delete();
+
+        return redirect()->route('messages.index')->with('success', 'Geselecteerde berichten succesvol verwijderd!');
     }
 }
