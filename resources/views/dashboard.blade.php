@@ -40,15 +40,15 @@
                                     </svg>
                                 </button>
                                 @if (isset($conversation) && $conversation->messages->isNotEmpty())
-                                    <button
+                                    {{-- <button
                                         onclick="document.getElementById('edit-conversation-form').classList.toggle('hidden')"
                                         class="text-yellow-500 hover:text-yellow-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            viewBox="0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4 12.5-12.5z" />
                                         </svg>
-                                    </button>
+                                    </button> --}}
                                     <button onclick="confirmDelete()" class="text-red-500 hover:text-red-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor">
@@ -115,6 +115,32 @@
                                                     class="{{ $message->user_id == Auth::id() ? 'text-right' : 'text-left' }}">
                                                     <span
                                                         class="text-gray-300 break-words">{{ $message->content }}</span>
+                                                    @if ($message->user_id == Auth::id())
+                                                        <button
+                                                            onclick="document.getElementById('edit-message-form-{{ $message->id }}').classList.toggle('hidden')"
+                                                            class="text-yellow-500 hover:text-yellow-700">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                                fill="none" viewBox="0 0 24 24"
+                                                                stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M12 20h9M16.5 3.5a2.121 2.121 0 113 3L7 19l-4 1 1-4 12.5-12.5z" />
+                                                            </svg>
+                                                        </button>
+                                                        <form id="edit-message-form-{{ $message->id }}"
+                                                            action="{{ route('messages.update', ['conversation' => $conversation->id, 'message' => $message->id]) }}"
+                                                            method="POST" class="hidden mt-4">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="flex items-center space-x-4">
+                                                                <input type="text" name="content"
+                                                                    value="{{ $message->content }}" required
+                                                                    class="flex-1 p-2 border border-gray-300 rounded">
+                                                                <button type="submit"
+                                                                    class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Update</button>
+                                                            </div>
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </li>
                                         @endforeach

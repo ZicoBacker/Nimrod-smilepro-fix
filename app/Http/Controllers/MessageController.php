@@ -99,7 +99,7 @@ class MessageController extends Controller
             $lastMessage->save();
         }
 
-        return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Bericht succesvol bijgewerkt!');
+        return redirect()->back()->with('success', 'Bericht succesvol bijgewerkt!');
     }
 
     public function deleteLastMessage(Request $request, Conversation $conversation)
