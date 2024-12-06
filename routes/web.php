@@ -48,6 +48,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/messages/{conversation}/edit', [MessageController::class, 'edit'])->name('messages.edit');
     Route::put('/messages/{conversation}', [MessageController::class, 'update'])->name('messages.update');
     Route::delete('/messages/{conversation}', [MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::delete('/messages/{conversation}/deleteLastMessage', [MessageController::class, 'deleteLastMessage'])->name('messages.deleteLastMessage');
     Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules.index');
     Route::get('/schedules/create', [ScheduleController::class, 'create'])->name('schedules.create');
     Route::get('/schedules/{schedule}', [ScheduleController::class, 'show'])->name('schedules.show');

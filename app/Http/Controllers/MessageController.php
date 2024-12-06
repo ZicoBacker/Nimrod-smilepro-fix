@@ -86,4 +86,29 @@ class MessageController extends Controller
 
         return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Nieuw gesprek succesvol aangemaakt!');
     }
+
+    public function update(Request $request, Conversation $conversation)
+    {
+        $request->validate([
+            'content' => 'required|string|max:255',
+        ]);
+
+        $lastMessage = $conversation->messages()->where('user_id', Auth::id())->latest()->first();
+        if ($lastMessage) {
+            $lastMessage->content = $request->content;
+            $lastMessage->save();
+        }
+
+        return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Bericht succesvol bijgewerkt!');
+    }
+
+    public function deleteLastMessage(Request $request, Conversation $conversation)
+    {
+        $lastMessage = $conversation->messages()->where('user_id', Auth::id())->latest()->first();
+        if ($lastMessage) {
+            $lastMessage->delete();
+        }
+
+        return redirect()->route('dashboard', ['conversation_id' => $conversation->id])->with('success', 'Laatste bericht succesvol verwijderd!');
+    }
 }
