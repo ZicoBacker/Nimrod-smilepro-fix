@@ -42,13 +42,16 @@ return new class extends Migration
         Schema::create('person', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('first_name');
-            $table->string('infix')->nullable();
-            $table->string('last_name');
-            $table->date('date_of_birth');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name');
+            $table->string('email');
+            $table->boolean('employee')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->boolean('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
         DB::statement('ALTER TABLE person MODIFY is_active BIT(1) default 1');
 
@@ -85,16 +88,21 @@ return new class extends Migration
         Schema::create('employee', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('person_id');
+            $table->string('name');
+            $table->string('email');
             $table->string('number');
-            $table->string('employee_type');
+            $table->string('employee_type')->nullable();
             $table->string('specialization')->nullable();
             $table->text('availability')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->boolean('is_active');
             $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->foreign('person_id')->references('id')->on('person');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         DB::statement('ALTER TABLE employee MODIFY is_active BIT(1) default 1');
 
