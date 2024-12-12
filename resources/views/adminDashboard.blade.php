@@ -17,15 +17,13 @@
                         <p>{{ Auth::user()->name }}</p>
                         <h4 class="text-xl font-semibold mt-4">Email</h4>
                         <p>{{ Auth::user()->email }}</p>
-                        {{-- <h4 class="text-xl font-semibold mt-4">Adres</h4>
-                        <p>{{ Auth::user()->address }}</p>
-                        <h4 class="text-xl font-semibold mt-4">Telefoon</h4>
-                        <p>{{ Auth::user()->phone }}</p> --}}
                     </div>
-                </div>
+                </div>                 
+            </div>
 
-                <!-- Statistieken -->
-                <div class="w-full lg:w-2/3 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <br>
+            <!-- Statistieken -->
+            <div class="w-full bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <h3 class="text-2xl font-bold mb-4">Statistieken</h3>
                         <p>Totaal aantal patiënten: <span id="totalPatients"></span></p>
@@ -36,8 +34,6 @@
                         <div id="error" class="text-red-500 mt-4" style="display: none;">Statistieken konden niet worden geladen. Probeer het later opnieuw.</div>
                     </div>
                 </div>
-                 
-            </div>
         </div>
     </div>
     <script>

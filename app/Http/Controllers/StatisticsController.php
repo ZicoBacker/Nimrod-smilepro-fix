@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use App\Models\Invoice;
 use Illuminate\Http\JsonResponse;
 
 class StatisticsController extends Controller
@@ -13,7 +14,7 @@ class StatisticsController extends Controller
         $totalPatients = Appointment::count();
         $averageWaitTime = Appointment::avg('wait_time');
         $totalAppointments = Appointment::count();
-        $totalPayments = Payment::count();
+        $totalPayments = Invoice::count();
         $averageAppointmentDuration = Appointment::avg('duration');
 
         return response()->json([
