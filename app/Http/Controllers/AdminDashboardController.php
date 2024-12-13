@@ -21,14 +21,12 @@ class AdminDashboardController extends Controller
         $totalPatients = Patient::count();
         $averageWaitTime = number_format(Appointment::avg('time') / 60, 0);
         $totalAppointments = Appointment::count();
-        // $totalPayments = Invoice::count('amount');
         $averageAppointmentDuration = number_format(Appointment::avg('time'), 0);
 
         return view('adminDashboard', [
             'totalPatients' => $totalPatients,
             'averageWaitTime' => $averageWaitTime,
             'totalAppointments' => $totalAppointments,
-            'totalPayments' => $totalPayments,
             'averageAppointmentDuration' => $averageAppointmentDuration,
         ]);
     }
