@@ -62,6 +62,6 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $patient->delete();
-        return response()->json(null, 204);
+        return redirect('/patients');
     }
 }
