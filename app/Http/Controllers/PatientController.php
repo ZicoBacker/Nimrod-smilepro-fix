@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class PatientController extends Controller
 {
     // pages?
-    public function index()
+    public function index(): View
     {
-        $patients = Patient::with('person')->get();
-        return response()->json($patients);
+        $patients = Patient::with('person')->paginate(10);
+        return View('Patient.index', ['patients' => $patients]);
     }
 
     public function store(Request $request)
@@ -55,6 +56,8 @@ class PatientController extends Controller
         $patient->update($request->all());
         return response()->json($patient);
     }
+
+    public function edit() {}
 
     public function destroy(Patient $patient)
     {
