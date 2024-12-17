@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PatientController extends Controller
 {
+    // pages?
     public function index()
     {
         $patients = Patient::with('person')->get();
@@ -30,7 +32,7 @@ class PatientController extends Controller
         $patient = Patient::create($request->all());
         return response()->json($patient, 201);
     }
-    
+
     public function show(Patient $patient)
     {
         return response()->json($patient->load('person'));

@@ -24,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        User::observe(UserObserver::class);
-        Person::observe(PersonObserver::class);
+        // The observers are doing NOTHING that laravel doesn't do automatically -z
+        // User::observe(UserObserver::class);
+        // Person::observe(PersonObserver::class);
     }
 }

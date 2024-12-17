@@ -11,7 +11,7 @@ class Employee extends Model
     // yo! I'm a comment
     use HasFactory;
 
-    protected $table = 'employee';
+    // protected $table = 'employees';
 
     protected $fillable = [
         'person_id',
@@ -23,7 +23,6 @@ class Employee extends Model
         'specialization',
         'availability',
         'date_of_birth',
-        'employee',
         'is_active',
         'comment'
     ];
